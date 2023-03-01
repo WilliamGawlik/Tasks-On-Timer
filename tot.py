@@ -3,6 +3,20 @@ import sys
 import getpass
 from datetime import datetime
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+def print_c(string,color):
+    print(f"{color}{string}{bcolors.ENDC}")
+
 def clear(lines = 0):
     clear_lines=f'\033[{lines}A'
     
@@ -61,7 +75,7 @@ def user_login(guest):
         clear(6)
         
     if user_auth(username,password):
-        print(f'{username}')
+        print_c(f'[{username}]',bcolors.HEADER)
         return True
     else:
         print(f'Login attempt failed')
