@@ -1,7 +1,8 @@
-from os import system, name
+import os
+import sys
 import getpass
 from datetime import datetime
-   
+
 def clear(lines = 0):
     clear_lines=f'\033[{lines}A'
     
@@ -10,12 +11,12 @@ def clear(lines = 0):
         print('\033[J')
     else:
         # for windows
-        if name == 'nt':
-            _ = system('cls')
+        if os.name == 'nt':
+            _ = os.system('cls')
     
         # for mac and linux(here, os.name is 'posix')
         else:
-            _ = system('clear')
+            _ = os.system('clear')
         
 def title_ascii_art():
     print(r"""
@@ -48,16 +49,18 @@ def user_login(guest):
 
     if not guest:
         print('Enter Credentials')
-        
         username = input("Username: ")
         try:
             password = getpass.getpass()
             print()
+            clear(9)
+            
         except Exception as error:
             print('ERROR', error)
-    
+    else:
+        clear(6)
+        
     if user_auth(username,password):
-        clear(9)
         print(f'{username}')
         return True
     else:
