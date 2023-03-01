@@ -1,5 +1,6 @@
 from os import system, name
 import getpass
+from datetime import datetime
    
 def clear(lines = 0):
     clear_lines=f'\033[{lines}A'
@@ -24,17 +25,26 @@ def title_ascii_art():
    \ \_\  \ \_____\    \ \_\ 
     \/_/   \/_____/     \/_/ 
     
-        Tasks on Timer
+     -[ Tasks on Timer ]-
         
     """)
     
 def print_title():
     clear()
+    print_time()
     title_ascii_art()
+    
+def print_time():
+    time = datetime.now()
+
+    formatted_time = time.strftime("%Y-%m-%d %H:%M:%S")
+    print(formatted_time)
     
 def user_login(guest):
     username = 'guest'
     password = ''
+    
+    clear(2)
 
     if not guest:
         print('Enter Credentials')
